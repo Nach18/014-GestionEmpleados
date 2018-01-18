@@ -19,7 +19,7 @@ public class Menu {
 
     public void mostrarMenu() {
         do {
-            System.out.println("Bienvenido a su gestor de empleados 2013!!!");
+            System.out.println("Bienvenido a su gestor de empleados 2003!!!");
             System.out.println("¿Que desea hacer hoy?");
             System.out.println("1) Añadir un nuevo empleado");
             System.out.println("2) Añadir un nuevo Departamento");
@@ -46,6 +46,7 @@ public class Menu {
                     break;
                 case 3:
                     System.out.println("");
+                    addEmpleadoToDepartamento();
                     break;
                 case 4:
                     System.out.println("");
@@ -91,6 +92,7 @@ public class Menu {
     }
 
     public void verEmpleados () {
+        System.out.println("Esta es tu lista de empleados: ");
         for (Empleados verEmpleados : listaEmpleados) {
             /*Un for each para recorrer un ArrayList que llamaremos: verEmpleados que se formara por:
             * cada Empleado de la listaEmpleados
@@ -126,6 +128,7 @@ public class Menu {
 
     public void verDepartamentos () {
         System.out.println("-----------------");
+        System.out.println("Estos son los departamentos creados");
         for (Departamentos verDepartamentos : listaDepartamentos) {
             /*Usamos un For Each para recorrer el ArrayList (listaDepartamentos)
             * basado en la clase (Departamentos)
@@ -141,9 +144,47 @@ public class Menu {
     }
 
     public void addEmpleadoToDepartamento () {
-        int seleccionarDepartamento;
+        /*Este metodo comunicara la lista empleados y la lista departamentos para que guarde uno
+        * empleados en cada departamento segun su posición
+        *
+        * Sin embargo, yo quiero permitir al usuario que agregue varios trabajadores a la vez
+        * por lo que tendre que usar un Array que guarde dicha selección de posiciones seperando
+        * cada numero por comas
+        * (ejemplo: 1,4,5...)*/
+        int[] seleccionDepartamento;
+        /*Este sera el array que usare para operar con las listas
+        * Tiene que ser este array pues solo podemos operar si es de tipo entero (int)
+        * ESTE NOS SERVIRA PARA OPERAR*/
 
-        System.out.println("Indique por posición");
+        String[] multiSeleccion;
+        /*Este sera el array que guarde las posiciones que escriba el usuario
+        * tiene que ser este array pues la selección vendra incluido con comas (como elemento
+        * separador), por lo que sera tratado como una cadena de texto (String)
+        * ESTE NOS SERVIRA PARA CONVERTIR*/
+
+        int scDepartamento;
+
+
+        Departamentos locos = new Departamentos();
+        verDepartamentos();
+        System.out.println("Por favor, seleccione la posición numerica de un departemonto: ");
+        scDepartamento = sc.nextInt();
+        System.out.println("OK! Ahora solo queda elegir los empleados que quiere incluir \n");
+        verEmpleados();
+        System.out.println("Puede seleccionar la posición numerica de uno o varios empleados que quiera añadir al departamento " + listaDepartamentos.indexOf(scDepartamento) + locos.in(scDepartamento)));
+        System.out.println("Si quiere añadir mas de un empleado ponga las posiciones divididas por comas (1,3,4,6...)");
+        System.out.print("O_o -> \n");
+        multiSeleccion = sc.next().split(",");
+        seleccionDepartamento = new int [multiSeleccion.length];
+        for (int i = 0; i < seleccionDepartamento.length; i++) {
+            seleccionDepartamento [i] = Integer.parseInt(multiSeleccion [i]);
+            System.out.println(listaEmpleados.indexOf(seleccionDepartamento) + " se ha añadido a " + listaDepartamentos.indexOf(scDepartamento));
+        }
+        System.out.println("OK!");
+
+
+
+
     }
 
 
